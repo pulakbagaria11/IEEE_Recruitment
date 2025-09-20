@@ -1,0 +1,50 @@
+A1. We are storing labels as lists because we are using one hot encoding. One-hot encoding needs a fixed mapping from each category (label) to a position (index) in the encoded vector.
+
+A2. We can perform several mathematical operations on NumPy arrays which makes them suitable for purposes like AI ML. In the later stages, we calculate many statistical values like mean, mean squared error, cross entropy loss, etc. Using NumPy arrays makes these tasks easier. Additionally, they are much faster than python lists/
+
+A3. We are doing this to convert the channel of images from RGB to greyscale which is ideal for machine learning. This type of slicing results for X going from (num_images, height, width, channels) to (num_images, height, width)
+
+A4. We reshaped our array because machine learning algorithms expect a 1-D array and not 2-D arrays. So, our 28x28 pixels images get converted into a 784 features array.
+
+A5. In machine learning, the learning rate is a hyperparameter that controls the step size when updating a model's parameters during gradient descent to minimize error. It determines how much the model's weights are adjusted in response to the error in its predictions. 
+
+A6. Dimensions of weights and biases are chosen so that they work correctly in forward pass. These dimensions come from matrix multiplication. 
+
+z = W.X + b 
+
+W: weights; X: inputs; b: biases
+
+
+A7. In neural networks, W.X results in a (n,1) shape whereas b has (n) shape. Broadcasting automatically converts b into (n,1) shape. It avoids unnecessary creations of copies.
+
+A8. np.random.randn generates random numbers from a standard normal distribution (mean=0, std =1). The shape of the matrix is (hidden_neurons,input_neurons).
+
+A9. Activation functions are used to introduce non linearity, squash the values into certain ranges and enable training stability by introducing gradient flow.
+
+A10. The SoftMax() function takes raw scores and converts them into probability distributions. We need it because:
+Makes outputs interpretable as probabilities
+Allows classification decisions
+Works naturally with cross-entropy loss
+Enables smooth gradient-based learning
+
+A11. Loss functions are used to compare the deviations of predicted data from the original data. It helps us in setting parameters like learning rate, epochs, hidden neurons, etc. and provides us an insight on how accurate our model is. It also guides the optimizer during training. 
+
+A12. We get an array of 10 elements because we are using one-hot encoding. That array has a score which tells us "to which label is the prediction most similar to". The true label is also of size 10. Therefore, it's only logical to compare it with an array of size 10.
+
+A13. Subtracting mean from inputs makes the input data smaller (similar to normalised) and easy to work with activation functions. 
+
+A14. We use softmax at the output layer because it converts the raw scores (logits) into a probability distribution over the 10 classes, making the outputs interpretable, comparable to the one-hot labels, and usable with cross-entropy loss for training.
+
+A15. We redo the forward pass inside backprop so the function is self-contained and always works with the correct predictions for the given inputs. In theory, you could reuse outputs from the forward function to save computation, but for clarity and correctness, we recompute them here. We can swap because backprop only needs the outputs from forward, but we usually don’t swap because recomputing ensures consistency, keeps backprop self-contained and avoids errors from stale or mismatched outputs.
+
+A16. The validation dataset is a portion of data kept separate from training, used to monitor performance and tune hyperparameters during training. Generalization means the model’s ability to apply what it learned to new, unseen data, not just the training set.
+
+A17. The parameters in the model are:
+number of input features (pixels per image);
+number of neurons in the hidden layer;
+number of output classes;
+learning rate, controls update step size;
+number of training epochs
+respectively.
+
+A18. We use argmax to convert the model’s probability distribution into a single predicted class label (the index of the highest probability). This output is different from the raw model output because the model gives probabilities for all classes, but for accuracy we only need the final class choice to compare with the true labels.
